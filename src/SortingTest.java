@@ -24,26 +24,152 @@ radixsort
 public class SortingTest {
     static Scanner scan = new Scanner(System.in);
     static int MAXSTACKSIZE = 1000;
+
     public static void main(String args[]){
+        int n1 = 100,n2=10000,n3= 100000;
+        //at least 3 different list sizes
+        int[] staticArray = new int[n3];
+        generateRandomArray(staticArray);
+        int[] a1=new int[n1],a2=new int [n2],a3=new int [n3];
+        copyArray(staticArray,a1,a2,a3);
+        System.out.println("All algorithms sorting this Array");
+        printArray(staticArray);
+        System.out.println("Using Sizes n1: "+n1+", n2: "+n2+", n3: "+n3);
+//bubblesort
+        long startTime = System.nanoTime();
+        System.out.println("starting bubble sort \nsort on n1");
+        bubblesort(a1);
+        long endTime = System.nanoTime();
+        double elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.println("sort on n2");
+        bubblesort(a2);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.println("sort on n3");
+        bubblesort(a3);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        //elapsed time in ms
+        //reset array to original
+
+//selectsort
+        copyArray(staticArray,a1,a2,a3);
+        System.out.println("=========================================");
+        startTime = System.nanoTime();
+        System.out.println("Selection sort \nsort on n1");
+        selectsort(a1);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.println("sort on n2");
+        selectsort(a2);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.println("sort on n3");
+        selectsort(a3);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
 
 
+//insertSort
+        copyArray(staticArray,a1,a2,a3);
+        System.out.println("=========================================");
+        startTime = System.nanoTime();
+        System.out.println("Insertion sort \nsort on n1");
+        insSort(a1);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.println("sort on n2");
+        insSort(a2);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.println("sort on n3");
+        insSort(a3);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
 
     }//endmain
+//generating random list
+    static void generateRandomArray(int[] a){
+        Random rand = new Random();
+        for (int i= 0;i<a.length;i++){
+            a[i] = rand.nextInt(10000);
+        }
+    }
+//this is used so that all of the sorts sort the same array
+    static void copyArray(int[] copy, int []a1, int a2[],int[]a3){
+        for(int i=0; i< copy.length;i++){
+            if(i< a1.length){
+                a1[i]=copy[i];
+            }
+            if(i< a2.length){
+                a2[i]=copy[i];
+            }
+            if(i< a3.length){
+                a3[i]=copy[i];
+            }
+        }
+    }
+    static void printArray(int[] a){
+        for(int i = 0; i < a.length;i++){
+            System.out.print(" "+ a[i]);
+        }
+        System.out.println();
+    }
 //Exchange Sorts methods
 
     //Bubble Sort
-
-    //Selection Sort
-
-    //Insertion sort
-    static <E extends Comparable<? super E>>
-    void inssort(E[] A, int start, int len) {
-        for (int i=start+1; i<start+len; i++)        // Insert i'th record
-            for (int j=i; (j>start) &&
-                    (A[j].compareTo(A[j-1])<0); j--)
-                DSutil.swap(A, j, j-1);
+    static void bubblesort(int[] A) {
+        for (int i=A.length-1; i>0; i--) // Bubble up i’th record
+            for (int j=0; j<i; j++)
+                if (A[j]>(A[j+1])){
+                    DSutil.swap(A, j, j + 1);
+                 }
     }
 
+    //Selection Sort
+    static void selectsort(int[] A) {
+        for (int i=0; i<A.length-1; i++) { // Select i’th record
+            int lowindex = i; // Remember its index
+            for (int j=A.length-1; j>i; j--) // Find the least value
+                if (A[j]<(A[lowindex]))
+                    lowindex = j; // Put it in place
+            DSutil.swap(A, i, lowindex);
+        }
+    }
+
+    //Insertion sort
+    static void insSort(int[] array) {
+        int i;
+        int key;
+
+        for (int j = 1; j < array.length; j++) {
+            key = array[ j ];
+            i = j - 1;
+
+            while ((i >= 0) && (array[ i ] > key)) {
+                array[ i + 1 ] = array[ i ];
+                i--;
+            }
+
+            array[ i + 1 ] = key;
+        }
+    }
+/*
 //Quicksort
      /**
      Source code example for "A Practical Introduction to Data
@@ -51,6 +177,8 @@ public class SortingTest {
      by Clifford A. Shaffer
      Copyright 2008-2011 by Clifford A. Shaffer
      */
+
+    /*
     static <E extends Comparable<? super E>>
     void qsort(E[] A, int start, int end) {      // Quicksort
         int pivotindex = findpivot(A, start, end); // Pick a pivot
@@ -130,6 +258,22 @@ void qsort(E[] A, int oi, int oj) {
 
 //Shellsort
     //powers of 2
+    void Sort(E[] A) {
+        for (int i=A.length/2; i>2; i/=2) // For each increment
+            for (int j=0; j<i; j++)         // Sort each sublist
+                inssort2(A, j, i);
+        inssort2(A, 0, 1);     // Could call regular inssort here
+    }
+
+        //Modified Insertion Sort for varying increments
+        static <E extends Comparable<? super E>>
+        void inssort2(E[] A, int start, int incr) {
+            for (int i=start+incr; i<A.length; i+=incr)
+                for (int j=i; (j>=incr)&&
+                        (A[j].compareTo(A[j-incr])<0); j-=incr)
+                    DSutil.swap(A, j, j-incr);
+        }
+
     //powers of 3
 //end Shell
 
@@ -208,7 +352,7 @@ static void radix(Integer[] A, Integer[] B,
 
         for (j=0; j<A.length; j++) A[j] = B[j]; // Copy B back
     }
-}
+}*/
 //end Radix
 
 
