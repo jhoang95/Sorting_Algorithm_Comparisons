@@ -23,34 +23,33 @@ radixsort
 
 public class SortingTest {
     static Scanner scan = new Scanner(System.in);
-    static int MAXSTACKSIZE = 1000;
 
     public static void main(String args[]){
-        int n1 = 100,n2=10000,n3= 100000;
+        int n1 = 100,n2=10000,n3= 100000,n4=10000000;
         //at least 3 different list sizes
-        int[] staticArray = new int[n3];
+        int[] staticArray = new int[n4];
         generateRandomArray(staticArray);
-        int[] a1=new int[n1],a2=new int [n2],a3=new int [n3];
+        int[] a1=new int[n1],a2=new int [n2],a3=new int [n3],a4=new int[n4];
         copyArray(staticArray,a1,a2,a3);
-        System.out.println("All algorithms sorting this Array");
-        printArray(staticArray);
+        System.out.println("All algorithms sorting the same Array at different sizes");
+       // printArray(staticArray);
         System.out.println("Using Sizes n1: "+n1+", n2: "+n2+", n3: "+n3);
 //bubblesort
         System.out.println("=========================================");
         long startTime = System.nanoTime();
-        System.out.println("starting bubble sort \nsort on n1");
+        System.out.print("Bubble sort \nsort on n1: ");
         bubblesort(a1);
         long endTime = System.nanoTime();
         double elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
         startTime = System.nanoTime();
-        System.out.println("sort on n2");
+        System.out.print("sort on n2: ");
         bubblesort(a2);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
         startTime = System.nanoTime();
-        System.out.println("sort on n3");
+        System.out.print("sort on n3: ");
         bubblesort(a3);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
@@ -62,19 +61,19 @@ public class SortingTest {
         copyArray(staticArray,a1,a2,a3);
         System.out.println("=========================================");
         startTime = System.nanoTime();
-        System.out.println("Selection sort \nsort on n1");
+        System.out.print("Selection sort \nsort on n1: ");
         selectsort(a1);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
         startTime = System.nanoTime();
-        System.out.println("sort on n2");
+        System.out.print("sort on n2: ");
         selectsort(a2);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
         startTime = System.nanoTime();
-        System.out.println("sort on n3");
+        System.out.print("sort on n3: ");
         selectsort(a3);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
@@ -85,46 +84,88 @@ public class SortingTest {
         copyArray(staticArray,a1,a2,a3);
         System.out.println("=========================================");
         startTime = System.nanoTime();
-        System.out.println("Insertion sort \nsort on n1");
+        System.out.print("Insertion sort \nsort on n1: ");
         insSort(a1);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
         startTime = System.nanoTime();
-        System.out.println("sort on n2");
+        System.out.print("sort on n2: ");
         insSort(a2);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
         startTime = System.nanoTime();
-        System.out.println("sort on n3");
+        System.out.print("sort on n3: ");
         insSort(a3);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
 
+        System.out.println("=========================================");
 //quicksort
         copyArray(staticArray,a1,a2,a3);
+        copyArray(staticArray,a4);
+        System.out.println("Adding Array of n= 10,000,000");
         System.out.println("=========================================");
         startTime = System.nanoTime();
-        System.out.println("Quick sort \nsort on n1");
+        System.out.print("Quick sort \nsort on n1: ");
         qsort(a1,0,(a1.length-1));
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
         startTime = System.nanoTime();
-        System.out.println("sort on n2");
+        System.out.print("sort on n2: ");
         qsort(a2,0,(a2.length-1));
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
         startTime = System.nanoTime();
-        System.out.println("sort on n3");
+        System.out.print("sort on n3: ");
         qsort(a3,0,(a3.length-1));
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+        System.out.print("sort on n4: ");
+        qsort(a4,0,(a4.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+//Quicksort Optimized
+        copyArray(staticArray,a1,a2,a3);
+        copyArray(staticArray,a4);
+        System.out.println("=========================================");
+        startTime = System.nanoTime();
+        System.out.print("Quick sort Optimized \nsort on n1: ");
+        qsortOp(a1,0,(a1.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.print("sort on n2: ");
+        qsortOp(a2,0,(a2.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.print("sort on n3: ");
+        qsortOp(a3,0,(a3.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        System.out.print("sort on n4: ");
+        qsortOp(a4,0,(a4.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+//shellsort
+
+
+
     }//endmain
+
+//BASIC ARRAY METHODS
 //generating random list
     static void generateRandomArray(int[] a){
         Random rand = new Random();
@@ -151,6 +192,11 @@ public class SortingTest {
             System.out.print(" "+ a[i]);
         }
         System.out.println();
+    }
+    static void copyArray(int[] copy,int []a){
+        for (int i = 0;i<a.length;i++){
+            a[i]=copy[i];
+        }
     }
 //Exchange Sorts methods
 
@@ -223,19 +269,18 @@ public class SortingTest {
         DSutil.swap(A, l, r);         // Reverse last, wasted swap
         return l;      // Return first position in right partition
     }
-    static <E extends Comparable<? super E>>
-        int findpivot(int[] A, int i, int j)
-        { return (i+j)/2; }
+    static int findpivot(int[] A, int i, int j){return (i+j)/2; }
 //end quicksort
-/*
-//Quicksort Improved
+
+
+//Optimized Quicksort
 static int THRESHOLD = 0;
-static <E extends Comparable<? super E>>
-void qsort(E[] A, int oi, int oj) {
+static int MAXSTACKSIZE = 1000;
+static void qsortOp(int[] A, int oi, int oj) {
     int[] Stack = new int[MAXSTACKSIZE]; // Stack for array bounds
     int listsize = oj-oi+1;
     int top = -1;
-    E pivot;
+    int pivot;
     int pivotindex, l, r;
 
     Stack[++top] = oi;  // Initialize stack
@@ -255,8 +300,8 @@ void qsort(E[] A, int oi, int oj) {
         l = i-1;
         r = j;
         do {
-            while (A[++l].compareTo(pivot)<0);
-            while ((r!=0) && (A[--r].compareTo(pivot)>0));
+            while (A[++l]<(pivot));
+            while ((r!=0) && (A[--r]>(pivot)));
             DSutil.swap(A, l, r);
         } while (l < r);
         DSutil.swap(A, l, r);  // Undo final swap
@@ -272,10 +317,10 @@ void qsort(E[] A, int oi, int oj) {
             Stack[++top] = j;
         }
     }
-    inssort(A);             // Final Insertion Sort
+    insSort(A);             // Final Insertion Sort
 }
 //end quicksort Improved
-
+/*
 //Shellsort
     //powers of 2
     void Sort(E[] A) {
