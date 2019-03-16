@@ -36,6 +36,7 @@ public class SortingTest {
         printArray(staticArray);
         System.out.println("Using Sizes n1: "+n1+", n2: "+n2+", n3: "+n3);
 //bubblesort
+        System.out.println("=========================================");
         long startTime = System.nanoTime();
         System.out.println("starting bubble sort \nsort on n1");
         bubblesort(a1);
@@ -102,12 +103,33 @@ public class SortingTest {
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
 
+//quicksort
+        copyArray(staticArray,a1,a2,a3);
+        System.out.println("=========================================");
+        startTime = System.nanoTime();
+        System.out.println("Quick sort \nsort on n1");
+        qsort(a1,0,(a1.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.println("sort on n2");
+        qsort(a2,0,(a2.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.println("sort on n3");
+        qsort(a3,0,(a3.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
     }//endmain
 //generating random list
     static void generateRandomArray(int[] a){
         Random rand = new Random();
         for (int i= 0;i<a.length;i++){
-            a[i] = rand.nextInt(10000);
+            a[i] = rand.nextInt(100000)-50000;
         }
     }
 //this is used so that all of the sorts sort the same array
@@ -177,10 +199,9 @@ public class SortingTest {
      by Clifford A. Shaffer
      Copyright 2008-2011 by Clifford A. Shaffer
      */
+//modified slightly for int arrays
 
-    /*
-    static <E extends Comparable<? super E>>
-    void qsort(E[] A, int start, int end) {      // Quicksort
+    static void qsort(int[] A, int start, int end) {      // Quicksort
         int pivotindex = findpivot(A, start, end); // Pick a pivot
         DSutil.swap(A, pivotindex, end);       // Stick pivot at end
         // k will be the first position in the right subarray
@@ -193,21 +214,20 @@ public class SortingTest {
             qsort(A, k+1, end);   // Sort right partition
         }
     }
-    static <E extends Comparable<? super E>>
-    int partition(E[] A, int l, int r, E pivot) {
+    static int partition(int[] A, int l, int r, int pivot) {
         do {                 // Move bounds inward until they meet
-            while (A[++l].compareTo(pivot)<0);
-            while ((r!=0) && (A[--r].compareTo(pivot)>0));
+            while (A[++l]<(pivot));
+            while ((r!=0) && (A[--r]>(pivot)));
             DSutil.swap(A, l, r);       // Swap out-of-place values
         } while (l < r);              // Stop when they cross
         DSutil.swap(A, l, r);         // Reverse last, wasted swap
         return l;      // Return first position in right partition
     }
     static <E extends Comparable<? super E>>
-        int findpivot(E[] A, int i, int j)
+        int findpivot(int[] A, int i, int j)
         { return (i+j)/2; }
 //end quicksort
-
+/*
 //Quicksort Improved
 static int THRESHOLD = 0;
 static <E extends Comparable<? super E>>
