@@ -34,6 +34,7 @@ public class SortingTest {
         System.out.println("All algorithms sorting the same Array at different sizes");
        // printArray(staticArray);
         System.out.println("Using Sizes n1: "+n1+", n2: "+n2+", n3: "+n3+", n4: "+n4+", n5: "+n5);
+
 //bubblesort
         System.out.println("=========================================");
         long startTime = System.nanoTime();
@@ -284,6 +285,88 @@ public class SortingTest {
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
 
+//mergesort
+        copyArray(staticArray,a1,a2,a3,a4,a5);
+        b1=intToInteger(a1);b2=intToInteger(a2);b3=intToInteger(a3);b4=intToInteger(a4);b5=intToInteger(a5);
+        Integer[] c1=intToInteger(a1),c2=intToInteger(a2),c3=intToInteger(a3),c4=intToInteger(a4),c5=intToInteger(a5);
+
+        System.out.println("=========================================");
+        startTime = System.nanoTime();
+        System.out.print("Merge sort \nsort on n1: ");
+        mergesort(b1,c1,0,(b1.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n2: ");
+        mergesort(b2,c2,0,(b2.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n3: ");
+        mergesort(b3,c3,0,(b3.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n4: ");
+        mergesort(b4,c4,0,(b4.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n4: ");
+        mergesort(b5,c5,0,(b5.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+//mergesort O
+        copyArray(staticArray,a1,a2,a3,a4,a5);
+        b1=intToInteger(a1);b2=intToInteger(a2);b3=intToInteger(a3);b4=intToInteger(a4);b5=intToInteger(a5);
+        c1=intToInteger(a1);c2=intToInteger(a2);c3=intToInteger(a3);c4=intToInteger(a4);c5=intToInteger(a5);
+
+        System.out.println("=========================================");
+        startTime = System.nanoTime();
+        System.out.print("Merge sort Optimized\nsort on n1: ");
+        mergesortO(b1,c1,0,(b1.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n2: ");
+        mergesortO(b2,c2,0,(b2.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n3: ");
+        mergesortO(b3,c3,0,(b3.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n4: ");
+        mergesortO(b4,c4,0,(b4.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n4: ");
+        mergesortO(b5,c5,0,(b5.length-1));
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        System.out.println(b1+" ");
 
     }//endmain
 
@@ -292,7 +375,7 @@ public class SortingTest {
     static void generateRandomArray(int[] a){
         Random rand = new Random();
         for (int i= 0;i<a.length;i++){
-            a[i] = rand.nextInt(100000)-50000;
+            a[i] = rand.nextInt(200000)-100000;
         }
     }
 //this is used so that all of the sorts sort the same array
@@ -492,7 +575,8 @@ static void heapsort(Integer[] A) {
 
 }
 //end heapsort
-/*
+
+
 //MergeSort
 static <E extends Comparable<? super E>>
 void mergesort(E[] A, E[] temp, int l, int r) {
@@ -515,10 +599,18 @@ void mergesort(E[] A, E[] temp, int l, int r) {
     }
 }
 //end msort
-/*
+
 //MergesortImproved
 static <E extends Comparable<? super E>>
-void mergesort(E[] A, E[] temp, int l, int r) {
+void inssort(E[] A, int start, int len) {
+    for (int i=start+1; i<start+len; i++)        // Insert i'th record
+        for (int j=i; (j>start) &&
+                (A[j].compareTo(A[j-1])<0); j--)
+            DSutil.swap(A, j, j-1);
+}
+
+static <E extends Comparable<? super E>>
+void mergesortO(E[] A, E[] temp, int l, int r) {
     int i, j, k, mid = (l+r)/2;  // Select the midpoint
     if (l == r) return;          // List has one element
     if ((mid-l) >= THRESHOLD) mergesort(A, temp, l, mid);
@@ -534,7 +626,7 @@ void mergesort(E[] A, E[] temp, int l, int r) {
         else A[k] = temp[j--];
 }
 //end msort Improved
-
+/*
 //RadixSort
 static void radix(Integer[] A, Integer[] B,
                   int k, int r, int[] count) {
