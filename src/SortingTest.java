@@ -160,7 +160,86 @@ public class SortingTest {
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
 //shellsort
-
+        copyArray(staticArray,a1,a2,a3);
+        copyArray(staticArray,a4);
+        System.out.println("=========================================");
+        startTime = System.nanoTime();
+        System.out.print("Shell Sort powers of 2 \nsort on n1: ");
+        shellSort(a1);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.print("sort on n2: ");
+        shellSort(a2);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.print("sort on n3: ");
+        shellSort(a3);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        System.out.print("sort on n4: ");
+        shellSort(a4);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+//Shellsort powers of 3
+        copyArray(staticArray,a1,a2,a3);
+        copyArray(staticArray,a4);
+        System.out.println("=========================================");
+        startTime = System.nanoTime();
+        System.out.print("Shell Sort powers of 3 \nsort on n1: ");
+        shellSort3(a1);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.print("sort on n2: ");
+        shellSort3(a2);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.print("sort on n3: ");
+        shellSort3(a3);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        System.out.print("sort on n4: ");
+        shellSort3(a4);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+//heapsort
+        copyArray(staticArray,a1,a2,a3);
+        copyArray(staticArray,a4);
+        System.out.println("=========================================");
+        startTime = System.nanoTime();
+        System.out.print("Heap Sort \nsort on n1: ");
+        heapsort(a1);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.print("sort on n2: ");
+        heapsort(a2);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.print("sort on n3: ");
+        heapsort(a3);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+        System.out.print("sort on n4: ");
+        heapsort(a4);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
 
 
     }//endmain
@@ -320,10 +399,11 @@ static void qsortOp(int[] A, int oi, int oj) {
     insSort(A);             // Final Insertion Sort
 }
 //end quicksort Improved
-/*
+
+
 //Shellsort
     //powers of 2
-    void Sort(E[] A) {
+    static void shellSort(int[] A) {
         for (int i=A.length/2; i>2; i/=2) // For each increment
             for (int j=0; j<i; j++)         // Sort each sublist
                 inssort2(A, j, i);
@@ -331,28 +411,37 @@ static void qsortOp(int[] A, int oi, int oj) {
     }
 
         //Modified Insertion Sort for varying increments
-        static <E extends Comparable<? super E>>
-        void inssort2(E[] A, int start, int incr) {
+        static void inssort2(int[] A, int start, int incr) {
             for (int i=start+incr; i<A.length; i+=incr)
-                for (int j=i; (j>=incr)&&
-                        (A[j].compareTo(A[j-incr])<0); j-=incr)
+                for (int j=i; (j>=incr)&&(A[j]<(A[j-incr])); j-=incr)
                     DSutil.swap(A, j, j-incr);
         }
 
     //powers of 3
+    static void shellSort3(int[] A) {
+        for (int i=A.length/3; i>3; i/=3) // For each increment
+            for (int j=0; j<i; j++)         // Sort each sublist
+                inssort2(A, j, i);
+        inssort2(A, 0, 1);     // Could call regular inssort here
+    }
 //end Shell
 
 //Heapsort
-static <E extends Comparable<? super E>>
-void heapsort(E[] A) {
+static void heapsort(int[] A) {
+    Integer[] compA= new Integer[A.length];
+    for(int i=0; i <A.length;i++){
+        compA[i]= A[i];
+    }
     // The heap constructor invokes the buildheap method
-    MaxHeap<E> H = new MaxHeap<E>(A, A.length, A.length);
-    for (int i=0; i<A.length; i++)  // Now sort
+    MaxHeap<Integer> H = new MaxHeap<Integer>(compA, A.length, A.length);
+    for (int i=0; i<compA.length; i++)  // Now sort
         H.removemax(); // Removemax places max at end of heap
+    for(int i=0; i <A.length;i++){
+        A[i]= compA[i];
+    }
 }
-
 //end heapsort
-
+/*
 //MergeSort
 static <E extends Comparable<? super E>>
 void mergesort(E[] A, E[] temp, int l, int r) {
