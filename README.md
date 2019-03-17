@@ -17,4 +17,5 @@ Mergesort(Recursive vs Optimized)
 RadixSort
 
 and compared them based off of a random list filled with n= 100 1000 10,000 100,000 etc. for up to 5 sizes
+
 the sizes I chose were n = 100 10,000 100,000 1,000,000 10,000,000
