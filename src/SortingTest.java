@@ -240,7 +240,7 @@ public class SortingTest {
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
-
+        printArray(a3);
 
     }//endmain
 
