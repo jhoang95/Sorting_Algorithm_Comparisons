@@ -25,12 +25,12 @@ public class SortingTest {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String args[]){
-        int n1 = 100,n2=10000,n3= 100000,n4=10000000;
+        int n1 = 100,n2=10000,n3= 100000,n4=1000000,n5=10000000;
         //at least 3 different list sizes
-        int[] staticArray = new int[n4];
+        int[] staticArray = new int[n5];
         generateRandomArray(staticArray);
-        int[] a1=new int[n1],a2=new int [n2],a3=new int [n3],a4=new int[n4];
-        copyArray(staticArray,a1,a2,a3);
+        int[] a1=new int[n1],a2=new int [n2],a3=new int [n3],a4=new int[n4],a5=new int[n5];
+        copyArray(staticArray,a1,a2,a3,a4,a5);
         System.out.println("All algorithms sorting the same Array at different sizes");
        // printArray(staticArray);
         System.out.println("Using Sizes n1: "+n1+", n2: "+n2+", n3: "+n3);
@@ -58,7 +58,7 @@ public class SortingTest {
         //reset array to original
 
 //selectsort
-        copyArray(staticArray,a1,a2,a3);
+        copyArray(staticArray,a1,a2,a3,a4,a5);
         System.out.println("=========================================");
         startTime = System.nanoTime();
         System.out.print("Selection sort \nsort on n1: ");
@@ -81,7 +81,7 @@ public class SortingTest {
 
 
 //insertSort
-        copyArray(staticArray,a1,a2,a3);
+        copyArray(staticArray,a1,a2,a3,a4,a5);
         System.out.println("=========================================");
         startTime = System.nanoTime();
         System.out.print("Insertion sort \nsort on n1: ");
@@ -102,11 +102,8 @@ public class SortingTest {
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
 
-        System.out.println("=========================================");
 //quicksort
-        copyArray(staticArray,a1,a2,a3);
-        copyArray(staticArray,a4);
-        System.out.println("Adding Array of n= 10,000,000");
+        copyArray(staticArray,a1,a2,a3,a4,a5);
         System.out.println("=========================================");
         startTime = System.nanoTime();
         System.out.print("Quick sort \nsort on n1: ");
@@ -126,6 +123,8 @@ public class SortingTest {
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
         System.out.print("sort on n4: ");
         qsort(a4,0,(a4.length-1));
         endTime = System.nanoTime();
@@ -133,8 +132,7 @@ public class SortingTest {
         System.out.println(elapsedtime+" ms");
 
 //Quicksort Optimized
-        copyArray(staticArray,a1,a2,a3);
-        copyArray(staticArray,a4);
+        copyArray(staticArray,a1,a2,a3,a4,a5);
         System.out.println("=========================================");
         startTime = System.nanoTime();
         System.out.print("Quick sort Optimized \nsort on n1: ");
@@ -154,14 +152,14 @@ public class SortingTest {
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
         System.out.print("sort on n4: ");
         qsortOp(a4,0,(a4.length-1));
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
 //shellsort
-        copyArray(staticArray,a1,a2,a3);
-        copyArray(staticArray,a4);
+        copyArray(staticArray,a1,a2,a3,a4,a5);
         System.out.println("=========================================");
         startTime = System.nanoTime();
         System.out.print("Shell Sort powers of 2 \nsort on n1: ");
@@ -169,26 +167,29 @@ public class SortingTest {
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+
         startTime = System.nanoTime();
         System.out.print("sort on n2: ");
         shellSort(a2);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+
         startTime = System.nanoTime();
         System.out.print("sort on n3: ");
         shellSort(a3);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
         System.out.print("sort on n4: ");
         shellSort(a4);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
 //Shellsort powers of 3
-        copyArray(staticArray,a1,a2,a3);
-        copyArray(staticArray,a4);
+        copyArray(staticArray,a1,a2,a3,a4,a5);
         System.out.println("=========================================");
         startTime = System.nanoTime();
         System.out.print("Shell Sort powers of 3 \nsort on n1: ");
@@ -196,27 +197,31 @@ public class SortingTest {
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+
         startTime = System.nanoTime();
         System.out.print("sort on n2: ");
         shellSort3(a2);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+
         startTime = System.nanoTime();
         System.out.print("sort on n3: ");
         shellSort3(a3);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
         System.out.print("sort on n4: ");
         shellSort3(a4);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+
 //heapsort
-        copyArray(staticArray,a1,a2,a3);
-        copyArray(staticArray,a4);
-        Integer[] b1=intToInteger(a1),b2=intToInteger(a2),b3=intToInteger(a3),b4=intToInteger(a4);
+        copyArray(staticArray,a1,a2,a3,a4,a5);
+        Integer[] b1=intToInteger(a1),b2=intToInteger(a2),b3=intToInteger(a3),b4=intToInteger(a4),b5=intToInteger(a5);
         System.out.println("=========================================");
         startTime = System.nanoTime();
         System.out.print("Heap Sort \nsort on n1: ");
@@ -224,18 +229,22 @@ public class SortingTest {
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+
         startTime = System.nanoTime();
         System.out.print("sort on n2: ");
         heapsort(b2);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+
         startTime = System.nanoTime();
         System.out.print("sort on n3: ");
         heapsort(b3);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
         System.out.print("sort on n4: ");
         heapsort(b4);
         endTime = System.nanoTime();
@@ -254,7 +263,7 @@ public class SortingTest {
         }
     }
 //this is used so that all of the sorts sort the same array
-    static void copyArray(int[] copy, int []a1, int a2[],int[]a3){
+    static void copyArray(int[] copy, int []a1, int a2[],int[]a3,int[]a4,int[] a5){
         for(int i=0; i< copy.length;i++){
             if(i< a1.length){
                 a1[i]=copy[i];
@@ -264,6 +273,12 @@ public class SortingTest {
             }
             if(i< a3.length){
                 a3[i]=copy[i];
+            }
+            if(i< a4.length){
+                a4[i]=copy[i];
+            }
+            if(i< a5.length){
+                a5[i]=copy[i];
             }
         }
     }
@@ -429,7 +444,7 @@ static void qsortOp(int[] A, int oi, int oj) {
 
 
 //Heapsort
-    static Integer[] intToInteger(int[] A){
+static Integer[] intToInteger(int[] A){
         Integer[] temp = new Integer[A.length];
         for(int i=0; i <A.length;i++){
             temp[i]= A[i];
