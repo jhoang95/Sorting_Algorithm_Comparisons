@@ -216,31 +216,32 @@ public class SortingTest {
 //heapsort
         copyArray(staticArray,a1,a2,a3);
         copyArray(staticArray,a4);
+        Integer[] b1=intToInteger(a1),b2=intToInteger(a2),b3=intToInteger(a3),b4=intToInteger(a4);
         System.out.println("=========================================");
         startTime = System.nanoTime();
         System.out.print("Heap Sort \nsort on n1: ");
-        heapsort(a1);
+        heapsort(b1);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
         startTime = System.nanoTime();
         System.out.print("sort on n2: ");
-        heapsort(a2);
+        heapsort(b2);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
         startTime = System.nanoTime();
         System.out.print("sort on n3: ");
-        heapsort(a3);
+        heapsort(b3);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
         System.out.print("sort on n4: ");
-        heapsort(a4);
+        heapsort(b4);
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
-        printArray(a3);
+
 
     }//endmain
 
@@ -426,19 +427,21 @@ static void qsortOp(int[] A, int oi, int oj) {
     }
 //end Shell
 
+
 //Heapsort
-static void heapsort(int[] A) {
-    Integer[] compA= new Integer[A.length];
-    for(int i=0; i <A.length;i++){
-        compA[i]= A[i];
+    static Integer[] intToInteger(int[] A){
+        Integer[] temp = new Integer[A.length];
+        for(int i=0; i <A.length;i++){
+            temp[i]= A[i];
+        }
+        return temp;
     }
+static void heapsort(Integer[] A) {
     // The heap constructor invokes the buildheap method
-    MaxHeap<Integer> H = new MaxHeap<Integer>(compA, A.length, A.length);
-    for (int i=0; i<compA.length; i++)  // Now sort
+    MaxHeap<Integer> H = new MaxHeap<Integer>(A, A.length, A.length);
+    for (int i=0; i<A.length; i++)  // Now sort
         H.removemax(); // Removemax places max at end of heap
-    for(int i=0; i <A.length;i++){
-        A[i]= compA[i];
-    }
+
 }
 //end heapsort
 /*
@@ -464,7 +467,7 @@ void mergesort(E[] A, E[] temp, int l, int r) {
     }
 }
 //end msort
-
+/*
 //MergesortImproved
 static <E extends Comparable<? super E>>
 void mergesort(E[] A, E[] temp, int l, int r) {
