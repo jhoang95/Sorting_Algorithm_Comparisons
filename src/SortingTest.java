@@ -55,6 +55,12 @@ public class SortingTest {
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+        startTime = System.nanoTime();
+        System.out.print("sort on n4: ");
+        bubblesort(a4);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
         //elapsed time in ms
         //reset array to original
 
@@ -80,6 +86,14 @@ public class SortingTest {
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
 
+        startTime = System.nanoTime();
+        System.out.print("sort on n4: ");
+        selectsort(a4);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+
 
 //insertSort
         copyArray(staticArray,a1,a2,a3,a4,a5);
@@ -102,7 +116,12 @@ public class SortingTest {
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
-
+        startTime = System.nanoTime();
+        System.out.print("sort on n4: ");
+        insSort(a4);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
 //quicksort
         copyArray(staticArray,a1,a2,a3,a4,a5);
         System.out.println("=========================================");
