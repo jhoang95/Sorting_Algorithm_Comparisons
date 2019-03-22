@@ -55,6 +55,7 @@ public class SortingTest {
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
+        /*
         startTime = System.nanoTime();
         System.out.print("sort on n4: ");
         bubblesort(a4);
@@ -63,7 +64,7 @@ public class SortingTest {
         System.out.println(elapsedtime+" ms");
         //elapsed time in ms
         //reset array to original
-
+*/
 //selectsort
         copyArray(staticArray,a1,a2,a3,a4,a5);
         System.out.println("=========================================");
@@ -380,12 +381,58 @@ public class SortingTest {
         System.out.println(elapsedtime+" ms");
 
         startTime = System.nanoTime();
-        System.out.print("sort on n4: ");
+        System.out.print("sort on n5: ");
         mergesortO(b5,c5,0,(b5.length-1));
         endTime = System.nanoTime();
         elapsedtime=(endTime-startTime)/Math.pow(10, 6);
         System.out.println(elapsedtime+" ms");
-        System.out.println(b1+" ");
+
+
+        //Radix Sort
+        copyArray(staticArray,a1,a2,a3,a4,a5);
+        b1=intToInteger(a1);b2=intToInteger(a2);b3=intToInteger(a3);b4=intToInteger(a4);b5=intToInteger(a5);
+        //c is my temp
+        c1=intToInteger(a1);c2=intToInteger(a2);c3=intToInteger(a3);c4=intToInteger(a4);c5=intToInteger(a5);
+        int THRESHOLD = 8;
+        int[] POW2 = {1, 2, 4, 8, 16, 32, 64, 128, 256};
+        int[] count = new int[POW2[THRESHOLD]];
+        System.out.println("=========================================");
+        System.out.print("Radix Sort \nsort on n1: ");
+        startTime = System.nanoTime();
+        radix(b1, c1, 16/THRESHOLD, POW2[THRESHOLD], count);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n2: ");
+        radix(b2, c2, 16/THRESHOLD, POW2[THRESHOLD], count);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n3: ");
+        radix(b3, c3, 16/THRESHOLD, POW2[THRESHOLD], count);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n4: ");
+        radix(b4, c4, 16/THRESHOLD, POW2[THRESHOLD], count);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+        startTime = System.nanoTime();
+        System.out.print("sort on n5: ");
+        radix(b5, c5, 16/THRESHOLD, POW2[THRESHOLD], count);
+        endTime = System.nanoTime();
+        elapsedtime=(endTime-startTime)/Math.pow(10, 6);
+        System.out.println(elapsedtime+" ms");
+
+
 
     }//endmain
 
@@ -394,7 +441,7 @@ public class SortingTest {
     static void generateRandomArray(int[] a){
         Random rand = new Random();
         for (int i= 0;i<a.length;i++){
-            a[i] = rand.nextInt(200000)-100000;
+            a[i] = rand.nextInt(1000);
         }
     }
 //this is used so that all of the sorts sort the same array
@@ -645,7 +692,7 @@ void mergesortO(E[] A, E[] temp, int l, int r) {
         else A[k] = temp[j--];
 }
 //end msort Improved
-/*
+
 //RadixSort
 static void radix(Integer[] A, Integer[] B,
                   int k, int r, int[] count) {
@@ -668,7 +715,7 @@ static void radix(Integer[] A, Integer[] B,
 
         for (j=0; j<A.length; j++) A[j] = B[j]; // Copy B back
     }
-}*/
+}
 //end Radix
 
 
