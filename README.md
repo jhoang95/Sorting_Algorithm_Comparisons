@@ -20,10 +20,13 @@ and compared them based off of a random list filled with n= 100 1000 10,000 100,
 
 the sizes I chose were n = 100 10,000 100,000 1,000,000 10,000,000
 
+#Notes of improvement:
+*clean up code 
+  *separate sort analysis by either different classes or functions rather than constant copy/paste
+  
 
 
-
-Sample Output
+#Sample Output
 
 All algorithms sorting the same Array at different sizes
 Using Sizes n1: 100, n2: 10000, n3: 100000, n4: 1000000, n5: 10000000
