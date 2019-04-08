@@ -22,7 +22,7 @@ the sizes I chose were n = 100 10,000 100,000 1,000,000 10,000,000
 
 #Notes of improvement:
 *clean up code 
-  *separate sort analysis by either different classes or functions rather than constant copy/paste
+ *separate sort analysis by either different classes or functions rather than constant copy/paste
   
 
 
